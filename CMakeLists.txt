@@ -57,7 +57,8 @@ if(BUILD_TESTING)
         googletest
         URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
     )
-    # Prevent overriding runtime library on Windows
+    # Ensure static linking on Windows so no DLLs are required at test runtime
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     FetchContent_MakeAvailable(googletest)
 
