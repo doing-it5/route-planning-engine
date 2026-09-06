@@ -2,6 +2,7 @@
 #include "graph/Graph.h"
 #include "algorithms/Dijkstra.h"
 #include "algorithms/AStar.h"
+#include "parser/OSMParser.h"
 
 // ─── Extra edge-case tests ────────────────────────────────────────────────────
 
