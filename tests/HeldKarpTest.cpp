@@ -35,7 +35,7 @@ TEST_F(HeldKarpTest, FindsExactOptimalTour) {
     EXPECT_TRUE(result.found);
     // Perimeter tour: 10 + 15 + 20 + 25 = 70.0
     EXPECT_DOUBLE_EQ(result.totalDistance, 70.0);
-    EXPECT_EQ(result.tour.size(), 4u);
+    EXPECT_EQ(result.tour.size(), static_cast<size_t>(4));
     EXPECT_EQ(result.tour[0], 1); // starts at stop 1
 }
 

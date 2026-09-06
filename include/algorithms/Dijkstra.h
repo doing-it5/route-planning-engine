@@ -18,7 +18,7 @@ struct DijkstraResult {
     bool                found;          // false when no path exists
 
     DijkstraResult()
-        : distance(std::numeric_limits<double>::max()),
+        : distance((std::numeric_limits<double>::max)()),
           nodeExpansions(0),
           found(false) {}
 };

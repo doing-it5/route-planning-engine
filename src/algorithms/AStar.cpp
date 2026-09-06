@@ -45,7 +45,7 @@ AStarResult AStar::findShortest(Graph& graph, int64_t start, int64_t end) {
     };
 
     // ── Initialise ────────────────────────────────────────────────────────
-    const double INF = std::numeric_limits<double>::max();
+    const double INF = (std::numeric_limits<double>::max)();
     std::unordered_map<int64_t, double>  g;   // known cost from start
     std::unordered_map<int64_t, int64_t> prev;
 

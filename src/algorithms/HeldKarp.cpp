@@ -9,7 +9,7 @@
 std::vector<std::vector<double>>
 HeldKarp::buildDistanceMatrix(Graph& graph, const std::vector<int64_t>& stops) {
     const int n = static_cast<int>(stops.size());
-    const double INF = std::numeric_limits<double>::max();
+    const double INF = (std::numeric_limits<double>::max)();
     std::vector<std::vector<double>> dist(n, std::vector<double>(n, INF));
 
     for (int i = 0; i < n; ++i) {
@@ -40,7 +40,7 @@ HeldKarpResult HeldKarp::solve(Graph& graph, const std::vector<int64_t>& stops) 
 
     // ── Build pairwise distance matrix ────────────────────────────────────
     const auto dist = buildDistanceMatrix(graph, stops);
-    const double INF = std::numeric_limits<double>::max() / 2.0;
+    const double INF = (std::numeric_limits<double>::max)() / 2.0;
 
     // ── DP table: dp[mask][i] = min cost to visit all nodes in mask,
     //    ending at node i, starting from node 0. ─────────────────────────

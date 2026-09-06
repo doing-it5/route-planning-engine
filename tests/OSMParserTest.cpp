@@ -22,11 +22,11 @@ TEST_F(OSMParserTest, ParsesSimpleOSMXML) {
 
     auto result = OSMParser::parseOSMXMLFromString(xml, graph);
     EXPECT_TRUE(result.success);
-    EXPECT_EQ(result.nodesParsed, 2u);
+    EXPECT_EQ(result.nodesParsed, static_cast<size_t>(2));
     // Bidirectional way = 2 edges
-    EXPECT_EQ(result.edgesAdded, 2u);
-    EXPECT_EQ(graph.nodeCount(), 2u);
-    EXPECT_EQ(graph.edgeCount(), 2u);
+    EXPECT_EQ(result.edgesAdded, static_cast<size_t>(2));
+    EXPECT_EQ(graph.nodeCount(), static_cast<size_t>(2));
+    EXPECT_EQ(graph.edgeCount(), static_cast<size_t>(2));
 }
 
 TEST_F(OSMParserTest, HandlesOnewayTag) {
@@ -44,9 +44,9 @@ TEST_F(OSMParserTest, HandlesOnewayTag) {
 
     auto result = OSMParser::parseOSMXMLFromString(xml, graph);
     EXPECT_TRUE(result.success);
-    EXPECT_EQ(result.edgesAdded, 1u);
-    EXPECT_EQ(graph.getNeighbors(10).size(), 1u);
-    EXPECT_EQ(graph.getNeighbors(20).size(), 0u);
+    EXPECT_EQ(result.edgesAdded, static_cast<size_t>(1));
+    EXPECT_EQ(graph.getNeighbors(10).size(), static_cast<size_t>(1));
+    EXPECT_EQ(graph.getNeighbors(20).size(), static_cast<size_t>(0));
 }
 
 TEST_F(OSMParserTest, IgnoresNonRoutableWays) {
@@ -63,5 +63,5 @@ TEST_F(OSMParserTest, IgnoresNonRoutableWays) {
 
     auto result = OSMParser::parseOSMXMLFromString(xml, graph);
     EXPECT_TRUE(result.success);
-    EXPECT_EQ(result.edgesAdded, 0u);
+    EXPECT_EQ(result.edgesAdded, static_cast<size_t>(0));
 }

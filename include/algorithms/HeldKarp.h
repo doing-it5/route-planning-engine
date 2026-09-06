@@ -16,7 +16,7 @@ struct HeldKarpResult {
     bool                 found;
 
     HeldKarpResult()
-        : totalDistance(std::numeric_limits<double>::max()), found(false) {}
+        : totalDistance((std::numeric_limits<double>::max)()), found(false) {}
 };
 
 // ─── Held-Karp TSP solver ─────────────────────────────────────────────────────

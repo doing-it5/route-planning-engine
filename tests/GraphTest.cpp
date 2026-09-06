@@ -23,11 +23,11 @@ TEST_F(GraphTest, AddEdgeAndNeighbors) {
     graph.addNode(2, 40.7580, -73.9855);
     graph.addEdge(1, 2, 5.0, 5000.0);
 
-    EXPECT_EQ(graph.nodeCount(), 2u);
-    EXPECT_EQ(graph.edgeCount(), 1u);
+    EXPECT_EQ(graph.nodeCount(), static_cast<size_t>(2));
+    EXPECT_EQ(graph.edgeCount(), static_cast<size_t>(1));
 
     const auto& neighbors = graph.getNeighbors(1);
-    ASSERT_EQ(neighbors.size(), 1u);
+    ASSERT_EQ(neighbors.size(), static_cast<size_t>(1));
     EXPECT_EQ(neighbors[0].from, 1);
     EXPECT_EQ(neighbors[0].to, 2);
     EXPECT_DOUBLE_EQ(neighbors[0].weight, 5.0);
@@ -48,9 +48,9 @@ TEST_F(GraphTest, ClearGraph) {
     graph.addNode(1, 10.0, 20.0);
     graph.addNode(2, 10.1, 20.1);
     graph.addEdge(1, 2, 1.0, 100.0);
-    EXPECT_EQ(graph.nodeCount(), 2u);
+    EXPECT_EQ(graph.nodeCount(), static_cast<size_t>(2));
 
     graph.clear();
-    EXPECT_EQ(graph.nodeCount(), 0u);
-    EXPECT_EQ(graph.edgeCount(), 0u);
+    EXPECT_EQ(graph.nodeCount(), static_cast<size_t>(0));
+    EXPECT_EQ(graph.edgeCount(), static_cast<size_t>(0));
 }
