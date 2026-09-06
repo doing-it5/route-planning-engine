@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="RoutePlanningEngine Sample Generator">
+  <!-- NYC Landmarks Sample Graph -->
+  <node id="1001" lat="40.7128" lon="-74.0060"/> <!-- City Hall -->
+  <node id="1002" lat="40.7484" lon="-73.9857"/> <!-- Empire State Building -->
+  <node id="1003" lat="40.7580" lon="-73.9855"/> <!-- Times Square -->
+  <node id="1004" lat="40.7829" lon="-73.9654"/> <!-- Central Park -->
+  <node id="1005" lat="40.7061" lon="-73.9969"/> <!-- Brooklyn Bridge -->
+  <node id="1006" lat="40.7587" lon="-73.9787"/> <!-- Rockefeller Center -->
+
+  <!-- Broadway: City Hall -> Empire State -> Times Square -->
+  <way id="2001">
+    <nd ref="1001"/>
+    <nd ref="1002"/>
+    <nd ref="1003"/>
+    <tag k="highway" v="primary"/>
+    <tag k="name" v="Broadway"/>
+    <tag k="maxspeed" v="45"/>
+  </way>
+
+  <!-- 7th Ave: Times Square -> Central Park -->
+  <way id="2002">
+    <nd ref="1003"/>
+    <nd ref="1004"/>
+    <tag k="highway" v="secondary"/>
+    <tag k="name" v="7th Ave"/>
+    <tag k="maxspeed" v="40"/>
+  </way>
+
+  <!-- 5th Ave: Empire State -> Rockefeller Center -> Central Park (Oneway) -->
+  <way id="2003">
+    <nd ref="1002"/>
+    <nd ref="1006"/>
+    <nd ref="1004"/>
+    <tag k="highway" v="primary"/>
+    <tag k="name" v="5th Ave"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="maxspeed" v="40"/>
+  </way>
+
+  <!-- Park Row & Bridge: City Hall -> Brooklyn Bridge -->
+  <way id="2004">
+    <nd ref="1001"/>
+    <nd ref="1005"/>
+    <tag k="highway" v="primary"/>
+    <tag k="name" v="Brooklyn Bridge Approach"/>
+    <tag k="maxspeed" v="50"/>
+  </way>
+</osm>
