@@ -1,0 +1,251 @@
+Change Dir: 'D:/a/route-planning-engine/route-planning-engine/build'
+
+Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Enterprise/MSBuild/Current/Bin/amd64/MSBuild.exe" ALL_BUILD.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+Build started 9/6/2026 5:48:23 PM.
+
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" on node 1 (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (1) is building "D:\a\route-planning-engine\route-planning-engine\build\ZERO_CHECK.vcxproj" (2) on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "x64\Debug\ZERO_CHECK\".
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "x64\Debug\ZERO_CHECK\ZERO_CHECK.tlog\".
+InitializeBuildStatus:
+  Creating "x64\Debug\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "x64\Debug\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild".
+CustomBuild:
+  1>Checking Build System
+FinalizeBuildStatus:
+  Deleting file "x64\Debug\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild".
+  Touching "x64\Debug\ZERO_CHECK\ZERO_CHECK.tlog\ZERO_CHECK.lastbuildstate".
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\ZERO_CHECK.vcxproj" (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (1) is building "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googlemock\gmock.vcxproj" (3) on node 1 (default targets).
+PrepareForBuild:
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\".
+  Creating directory "gmock.dir\Debug\gmock.tlog\".
+InitializeBuildStatus:
+  Creating "gmock.dir\Debug\gmock.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "gmock.dir\Debug\gmock.tlog\unsuccessfulbuild".
+CustomBuild:
+  Building Custom Rule D:/a/route-planning-engine/route-planning-engine/build/_deps/googletest-src/googlemock/CMakeLists.txt
+ClCompile:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googlemock\include" /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googlemock" /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest\include" /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest" /Zi /nologo /W4 /WX /diagnostics:column /Od /Ob0 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D _UNICODE /D UNICODE /D _WIN32 /D STRICT /D WIN32_LEAN_AND_MEAN /D GTEST_HAS_PTHREAD=0 /D _HAS_EXCEPTIONS=1 /D NOMINMAX /D _USE_MATH_DEFINES /D "CMAKE_INTDIR=\"Debug\"" /EHsc /RTC1 /MDd /GS /GR /std:c++17 /Fo"gmock.dir\Debug\\" /Fd"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmockpdb_debug_postfix-NOTFOUND.pdb" /external:W4 /TP /wd4251 /wd4275 /wd4702 /errorReport:queue  -J -utf-8 "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest\src\gtest-all.cc" "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googlemock\src\gmock-all.cc"
+  gtest-all.cc
+  gmock-all.cc
+  Generating Code...
+Lib:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock.lib" /NOLOGO /MACHINE:X64  /machine:x64 "gmock.dir\Debug\gtest-all.obj"
+  "gmock.dir\Debug\gmock-all.obj"
+  Copying file from "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmockpdb_debug_postfix-NOTFOUND.pdb" to "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock.pdb".
+  gmock.vcxproj -> D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock.lib
+FinalizeBuildStatus:
+  Deleting file "gmock.dir\Debug\gmock.tlog\unsuccessfulbuild".
+  Touching "gmock.dir\Debug\gmock.tlog\gmock.lastbuildstate".
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googlemock\gmock.vcxproj" (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (1) is building "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googlemock\gmock_main.vcxproj" (4) on node 1 (default targets).
+PrepareForBuild:
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "gmock_main.dir\Debug\gmock_main.tlog\".
+InitializeBuildStatus:
+  Creating "gmock_main.dir\Debug\gmock_main.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "gmock_main.dir\Debug\gmock_main.tlog\unsuccessfulbuild".
+CustomBuild:
+  Building Custom Rule D:/a/route-planning-engine/route-planning-engine/build/_deps/googletest-src/googlemock/CMakeLists.txt
+ClCompile:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googlemock\include" /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googlemock" /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest\include" /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest" /Zi /nologo /W4 /WX /diagnostics:column /Od /Ob0 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D _UNICODE /D UNICODE /D _WIN32 /D STRICT /D WIN32_LEAN_AND_MEAN /D GTEST_HAS_PTHREAD=0 /D _HAS_EXCEPTIONS=1 /D NOMINMAX /D _USE_MATH_DEFINES /D "CMAKE_INTDIR=\"Debug\"" /EHsc /RTC1 /MDd /GS /GR /std:c++17 /Fo"gmock_main.dir\Debug\\" /Fd"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock_mainpdb_debug_postfix-NOTFOUND.pdb" /external:W4 /TP /wd4251 /wd4275 /wd4702 /errorReport:queue  -J -utf-8 "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest\src\gtest-all.cc" "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googlemock\src\gmock-all.cc" "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googlemock\src\gmock_main.cc"
+  gtest-all.cc
+  gmock-all.cc
+  gmock_main.cc
+  Generating Code...
+Lib:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock_main.lib" /NOLOGO /MACHINE:X64  /machine:x64 "gmock_main.dir\Debug\gtest-all.obj"
+  "gmock_main.dir\Debug\gmock-all.obj"
+  gmock_main.dir\Debug\gmock_main.obj
+  Copying file from "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock_mainpdb_debug_postfix-NOTFOUND.pdb" to "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock_main.pdb".
+  gmock_main.vcxproj -> D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gmock_main.lib
+FinalizeBuildStatus:
+  Deleting file "gmock_main.dir\Debug\gmock_main.tlog\unsuccessfulbuild".
+  Touching "gmock_main.dir\Debug\gmock_main.tlog\gmock_main.lastbuildstate".
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googlemock\gmock_main.vcxproj" (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (1) is building "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googletest\gtest.vcxproj" (5) on node 1 (default targets).
+PrepareForBuild:
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "gtest.dir\Debug\gtest.tlog\".
+InitializeBuildStatus:
+  Creating "gtest.dir\Debug\gtest.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "gtest.dir\Debug\gtest.tlog\unsuccessfulbuild".
+CustomBuild:
+  Building Custom Rule D:/a/route-planning-engine/route-planning-engine/build/_deps/googletest-src/googletest/CMakeLists.txt
+ClCompile:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest\include" /I"D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest" /Zi /nologo /W4 /WX /diagnostics:column /Od /Ob0 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D _UNICODE /D UNICODE /D _WIN32 /D STRICT /D WIN32_LEAN_AND_MEAN /D GTEST_HAS_PTHREAD=0 /D _HAS_EXCEPTIONS=1 /D NOMINMAX /D _USE_MATH_DEFINES /D "CMAKE_INTDIR=\"Debug\"" /EHsc /RTC1 /MDd /GS /GR /std:c++17 /Fo"gtest.dir\Debug\\" /Fd"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtestpdb_debug_postfix-NOTFOUND.pdb" /external:W4 /TP /wd4251 /wd4275 /wd4702 /errorReport:queue  -J -utf-8 "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest\src\gtest-all.cc"
+  gtest-all.cc
+Lib:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest.lib" /NOLOGO /MACHINE:X64  /machine:x64 "gtest.dir\Debug\gtest-all.obj"
+  Copying file from "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtestpdb_debug_postfix-NOTFOUND.pdb" to "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest.pdb".
+  gtest.vcxproj -> D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest.lib
+FinalizeBuildStatus:
+  Deleting file "gtest.dir\Debug\gtest.tlog\unsuccessfulbuild".
+  Touching "gtest.dir\Debug\gtest.tlog\gtest.lastbuildstate".
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googletest\gtest.vcxproj" (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (1) is building "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googletest\gtest_main.vcxproj" (6) on node 1 (default targets).
+PrepareForBuild:
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "gtest_main.dir\Debug\gtest_main.tlog\".
+InitializeBuildStatus:
+  Creating "gtest_main.dir\Debug\gtest_main.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "gtest_main.dir\Debug\gtest_main.tlog\unsuccessfulbuild".
+CustomBuild:
+  Building Custom Rule D:/a/route-planning-engine/route-planning-engine/build/_deps/googletest-src/googletest/CMakeLists.txt
+ClCompile:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /Zi /nologo /W4 /WX /diagnostics:column /Od /Ob0 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D _UNICODE /D UNICODE /D _WIN32 /D STRICT /D WIN32_LEAN_AND_MEAN /D GTEST_HAS_PTHREAD=0 /D _HAS_EXCEPTIONS=1 /D NOMINMAX /D _USE_MATH_DEFINES /D "CMAKE_INTDIR=\"Debug\"" /EHsc /RTC1 /MDd /GS /GR /std:c++17 /Fo"gtest_main.dir\Debug\\" /Fd"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest_mainpdb_debug_postfix-NOTFOUND.pdb" /external:W0 /TP /wd4251 /wd4275 /wd4702 /errorReport:queue  /external:I "D:/a/route-planning-engine/route-planning-engine/build/_deps/googletest-src/googletest/include" /external:I "D:/a/route-planning-engine/route-planning-engine/build/_deps/googletest-src/googletest" -J -utf-8 "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-src\googletest\src\gtest_main.cc"
+  gtest_main.cc
+Lib:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest_main.lib" /NOLOGO /MACHINE:X64  /machine:x64 gtest_main.dir\Debug\gtest_main.obj
+  Copying file from "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest_mainpdb_debug_postfix-NOTFOUND.pdb" to "D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest_main.pdb".
+  gtest_main.vcxproj -> D:\a\route-planning-engine\route-planning-engine\build\lib\Debug\gtest_main.lib
+FinalizeBuildStatus:
+  Deleting file "gtest_main.dir\Debug\gtest_main.tlog\unsuccessfulbuild".
+  Touching "gtest_main.dir\Debug\gtest_main.tlog\gtest_main.lastbuildstate".
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\_deps\googletest-build\googletest\gtest_main.vcxproj" (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (1) is building "D:\a\route-planning-engine\route-planning-engine\build\route_planner.vcxproj" (7) on node 1 (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\route_planner.vcxproj" (7) is building "D:\a\route-planning-engine\route-planning-engine\build\route_planning_lib.vcxproj" (8) on node 1 (default targets).
+PrepareForBuild:
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "D:\a\route-planning-engine\route-planning-engine\build\Debug\".
+  Creating directory "route_planning_lib.dir\Debug\route_pl.AC2A55CE.tlog\".
+InitializeBuildStatus:
+  Creating "route_planning_lib.dir\Debug\route_pl.AC2A55CE.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "route_planning_lib.dir\Debug\route_pl.AC2A55CE.tlog\unsuccessfulbuild".
+CustomBuild:
+  Building Custom Rule D:/a/route-planning-engine/route-planning-engine/CMakeLists.txt
+ClCompile:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /I"D:\a\route-planning-engine\route-planning-engine\include" /Zi /nologo /W4 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D NOMINMAX /D _USE_MATH_DEFINES /D "CMAKE_INTDIR=\"Debug\"" /EHsc /RTC1 /MDd /GR /std:c++17 /Fo"route_planning_lib.dir\Debug\\" /Fd"D:\a\route-planning-engine\route-planning-engine\build\Debug\route_planning_lib.pdb" /external:W4 /TP /errorReport:queue "D:\a\route-planning-engine\route-planning-engine\src\graph\Graph.cpp" "D:\a\route-planning-engine\route-planning-engine\src\algorithms\Dijkstra.cpp" "D:\a\route-planning-engine\route-planning-engine\src\algorithms\AStar.cpp" "D:\a\route-planning-engine\route-planning-engine\src\algorithms\HeldKarp.cpp" "D:\a\route-planning-engine\route-planning-engine\src\algorithms\TwoOpt.cpp" "D:\a\route-planning-engine\route-planning-engine\src\benchmark\Benchmark.cpp" "D:\a\route-planning-engine\route-planning-engine\src\parser\OSMParser.cpp" "D:\a\route-planning-engine\route-planning-engine\src\utils\Utils.cpp"
+  Graph.cpp
+  Dijkstra.cpp
+  AStar.cpp
+  HeldKarp.cpp
+  TwoOpt.cpp
+D:\a\route-planning-engine\route-planning-engine\src\algorithms\TwoOpt.cpp(9,52): warning C4100: 'tour': unreferenced parameter [D:\a\route-planning-engine\route-planning-engine\build\route_planning_lib.vcxproj]
+D:\a\route-planning-engine\route-planning-engine\src\algorithms\TwoOpt.cpp(9,15): warning C4505: 'tourCost': unreferenced function with internal linkage has been removed [D:\a\route-planning-engine\route-planning-engine\build\route_planning_lib.vcxproj]
+  Benchmark.cpp
+  OSMParser.cpp
+  Utils.cpp
+  Generating Code...
+Lib:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"D:\a\route-planning-engine\route-planning-engine\build\Debug\route_planning_lib.lib" /NOLOGO /MACHINE:X64  /machine:x64 route_planning_lib.dir\Debug\Graph.obj
+  route_planning_lib.dir\Debug\Dijkstra.obj
+  route_planning_lib.dir\Debug\AStar.obj
+  route_planning_lib.dir\Debug\HeldKarp.obj
+  route_planning_lib.dir\Debug\TwoOpt.obj
+  route_planning_lib.dir\Debug\Benchmark.obj
+  route_planning_lib.dir\Debug\OSMParser.obj
+  route_planning_lib.dir\Debug\Utils.obj
+  route_planning_lib.vcxproj -> D:\a\route-planning-engine\route-planning-engine\build\Debug\route_planning_lib.lib
+FinalizeBuildStatus:
+  Deleting file "route_planning_lib.dir\Debug\route_pl.AC2A55CE.tlog\unsuccessfulbuild".
+  Touching "route_planning_lib.dir\Debug\route_pl.AC2A55CE.tlog\route_planning_lib.lastbuildstate".
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\route_planning_lib.vcxproj" (default targets).
+PrepareForBuild:
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "route_planner.dir\Debug\route_planner.tlog\".
+InitializeBuildStatus:
+  Creating "route_planner.dir\Debug\route_planner.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "route_planner.dir\Debug\route_planner.tlog\unsuccessfulbuild".
+CustomBuild:
+  Building Custom Rule D:/a/route-planning-engine/route-planning-engine/CMakeLists.txt
+ClCompile:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /I"D:\a\route-planning-engine\route-planning-engine\include" /Zi /nologo /W4 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D NOMINMAX /D _USE_MATH_DEFINES /D "CMAKE_INTDIR=\"Debug\"" /EHsc /RTC1 /MDd /GR /std:c++17 /Fo"route_planner.dir\Debug\\" /Fd"route_planner.dir\Debug\vc145.pdb" /external:W4 /TP /errorReport:queue "D:\a\route-planning-engine\route-planning-engine\src\main.cpp"
+  main.cpp
+Link:
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"D:\a\route-planning-engine\route-planning-engine\build\Debug\route_planner.exe" /INCREMENTAL /ILK:"route_planner.dir\Debug\route_planner.ilk" /NOLOGO Debug\route_planning_lib.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/a/route-planning-engine/route-planning-engine/build/Debug/route_planner.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/a/route-planning-engine/route-planning-engine/build/Debug/route_planner.lib" /MACHINE:X64  /machine:x64 route_planner.dir\Debug\main.obj
+  route_planner.vcxproj -> D:\a\route-planning-engine\route-planning-engine\build\Debug\route_planner.exe
+FinalizeBuildStatus:
+  Deleting file "route_planner.dir\Debug\route_planner.tlog\unsuccessfulbuild".
+  Touching "route_planner.dir\Debug\route_planner.tlog\route_planner.lastbuildstate".
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\route_planner.vcxproj" (default targets).
+Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (1) is building "D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj" (9) on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "x64\Debug\RUN_TESTS\".
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+  Creating directory "x64\Debug\RUN_TESTS\RUN_TESTS.tlog\".
+InitializeBuildStatus:
+  Creating "x64\Debug\RUN_TESTS\RUN_TESTS.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Touching "x64\Debug\RUN_TESTS\RUN_TESTS.tlog\unsuccessfulbuild".
+CustomBuild:
+  1>
+PostBuildEvent:
+  setlocal
+  "C:\Program Files\CMake\bin\ctest.exe" -C Debug
+  if %errorlevel% neq 0 goto :cmEnd
+  :cmEnd
+  endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+  :cmErrorLevel
+  exit /b %1
+  :cmDone
+  if %errorlevel% neq 0 goto :VCEnd
+  :VCEnd
+  Test project D:/a/route-planning-engine/route-planning-engine/build/tests
+      Start 1: unit_tests
+  Could not find executable D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/run_tests.exe
+  Looked in the following places:
+  D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/run_tests.exe
+  D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/run_tests.exe.exe
+  D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/Debug/run_tests.exe
+  D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/Debug/run_tests.exe.exe
+  Debug/D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/run_tests.exe
+  Debug/D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/run_tests.exe.exe
+  Unable to find executable: D:/a/route-planning-engine/route-planning-engine/build/tests/Debug/run_tests.exe
+  1/1 Test #1: unit_tests .......................***Not Run   0.00 sec
+  
+  0% tests passed, 1 tests failed out of 1
+  
+  Total Test time (real) =   0.14 sec
+  
+  The following tests FAILED:
+  	  1 - unit_tests (Not Run)
+  Errors while running CTest
+  Output from these tests are in: D:/a/route-planning-engine/route-planning-engine/build/tests/Testing/Temporary/LastTest.log
+  Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "setlocal [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\ctest.exe" -C Debug [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code 8. [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj" (default targets) -- FAILED.
+Done Building Project "D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (default targets) -- FAILED.
+
+Build FAILED.
+
+"D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (default target) (1) ->
+"D:\a\route-planning-engine\route-planning-engine\build\route_planner.vcxproj" (default target) (7) ->
+"D:\a\route-planning-engine\route-planning-engine\build\route_planning_lib.vcxproj" (default target) (8) ->
+(ClCompile target) -> 
+  D:\a\route-planning-engine\route-planning-engine\src\algorithms\TwoOpt.cpp(9,52): warning C4100: 'tour': unreferenced parameter [D:\a\route-planning-engine\route-planning-engine\build\route_planning_lib.vcxproj]
+  D:\a\route-planning-engine\route-planning-engine\src\algorithms\TwoOpt.cpp(9,15): warning C4505: 'tourCost': unreferenced function with internal linkage has been removed [D:\a\route-planning-engine\route-planning-engine\build\route_planning_lib.vcxproj]
+
+
+"D:\a\route-planning-engine\route-planning-engine\build\ALL_BUILD.vcxproj" (default target) (1) ->
+"D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj" (default target) (9) ->
+(PostBuildEvent target) -> 
+  C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "setlocal [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\ctest.exe" -C Debug [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code 8. [D:\a\route-planning-engine\route-planning-engine\build\tests\run_tests.vcxproj]
+
+    2 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:25.41
+
