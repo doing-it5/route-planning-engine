@@ -18,9 +18,10 @@ struct AStarResult {
     bool                 found;          // false when no path exists
 
     AStarResult()
-        : distance((std::numeric_limits<double>::max)()),
+        : distance(0.0),
           nodeExpansions(0),
           found(false) {}
+    // NOTE: distance is only meaningful when found == true.
 };
 
 // ─── A* class ────────────────────────────────────────────────────────────────
@@ -29,7 +30,7 @@ class AStar {
 public:
     /// Find the shortest path from @p start to @p end using the Haversine
     /// great-circle distance as an admissible heuristic.
-    static AStarResult findShortest(Graph& graph, int64_t start, int64_t end);
+    [[nodiscard]] static AStarResult findShortest(const Graph& graph, int64_t start, int64_t end);
 };
 
 #endif // ASTAR_H

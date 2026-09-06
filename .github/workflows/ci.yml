@@ -10,8 +10,6 @@ jobs:
   build-and-test:
     name: Build & Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    permissions:
-      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -22,6 +20,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Cache CMake build and dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          build/_deps
+          ~/.cache/CPM
+        key: ${{ runner.os }}-cmake-${{ matrix.build_type }}-${{ hashFiles('CMakeLists.txt', 'tests/CMakeLists.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-cmake-${{ matrix.build_type }}-
+          ${{ runner.os }}-cmake-
+
     - name: Configure CMake
       run: >
         cmake -B build
@@ -29,8 +38,45 @@ jobs:
         -DBUILD_TESTING=ON
 
     - name: Build
-      run: cmake --build build --config ${{ matrix.build_type }} --verbose
+      run: cmake --build build --config ${{ matrix.build_type }}
 
     - name: Run Tests
       working-directory: build
       run: ctest -C ${{ matrix.build_type }} --output-on-failure -VV
+
+  coverage:
+    name: Code Coverage (ubuntu-latest)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install lcov
+      run: sudo apt-get install -y lcov
+
+    - name: Configure CMake with coverage flags
+      run: >
+        cmake -B build
+        -DCMAKE_BUILD_TYPE=Debug
+        -DBUILD_TESTING=ON
+        -DCMAKE_CXX_FLAGS="--coverage -fprofile-arcs -ftest-coverage"
+        -DCMAKE_EXE_LINKER_FLAGS="--coverage"
+
+    - name: Build
+      run: cmake --build build
+
+    - name: Run Tests
+      working-directory: build
+      run: ctest --output-on-failure -VV
+
+    - name: Collect coverage
+      run: |
+        lcov --capture --directory build --output-file coverage.info
+        lcov --remove coverage.info '/usr/*' '*/build/_deps/*' '*/tests/*' --output-file coverage.info
+        lcov --list coverage.info
+
+    - name: Upload coverage artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: coverage.info

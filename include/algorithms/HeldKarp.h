@@ -16,7 +16,8 @@ struct HeldKarpResult {
     bool                 found;
 
     HeldKarpResult()
-        : totalDistance((std::numeric_limits<double>::max)()), found(false) {}
+        : totalDistance(0.0), found(false) {}
+    // NOTE: totalDistance is only meaningful when found == true.
 };
 
 // ─── Held-Karp TSP solver ─────────────────────────────────────────────────────
@@ -29,7 +30,7 @@ public:
     /// Solve the TSP for @p stops in @p graph.
     /// @p stops must contain at least 2 nodes that all exist in the graph.
     /// The tour begins and ends at stops[0].
-    static HeldKarpResult solve(Graph& graph, const std::vector<int64_t>& stops);
+    [[nodiscard]] static HeldKarpResult solve(Graph& graph, const std::vector<int64_t>& stops);
 
 private:
     /// Build a distance matrix by running Dijkstra between every pair of stops.

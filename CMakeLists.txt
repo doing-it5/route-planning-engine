@@ -19,6 +19,7 @@ set(LIB_SOURCES
     src/algorithms/AStar.cpp
     src/algorithms/HeldKarp.cpp
     src/algorithms/TwoOpt.cpp
+    src/algorithms/BidirectionalDijkstra.cpp
     src/benchmark/Benchmark.cpp
     src/parser/OSMParser.cpp
     src/utils/Utils.cpp
@@ -55,6 +56,7 @@ if(BUILD_TESTING)
     FetchContent_Declare(
         googletest
         URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+        URL_HASH SHA256=1f357c27ca988c3f7c6b4bf68a9395005ac6761f034046e9dde0896e3f498634
     )
     # Prevent overriding runtime library on Windows
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)

@@ -24,7 +24,7 @@ class TwoOpt {
 public:
     /// Improve @p tour using a symmetric cost matrix @p costMatrix.
     /// @p costMatrix[i][j] is the cost from tour[i] to tour[j].
-    static TwoOptResult improve(const std::vector<int64_t>& tour,
+    [[nodiscard]] static TwoOptResult improve(const std::vector<int64_t>& tour,
                                 const std::vector<std::vector<double>>& costMatrix);
 };
 

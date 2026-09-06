@@ -17,7 +17,7 @@ struct PQNode {
 
 // ─── Implementation ───────────────────────────────────────────────────────────
 
-DijkstraResult Dijkstra::findShortest(Graph& graph, int64_t start, int64_t end) {
+DijkstraResult Dijkstra::findShortest(const Graph& graph, int64_t start, int64_t end) {
     DijkstraResult result;
 
     if (!graph.nodeExists(start) || !graph.nodeExists(end)) {

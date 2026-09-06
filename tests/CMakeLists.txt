@@ -6,6 +6,8 @@ set(TEST_SOURCES
     TwoOptTest.cpp
     OSMParserTest.cpp
     BenchmarkTest.cpp
+    BidirectionalDijkstraTest.cpp
+    EdgeCaseTest.cpp
 )
 
 add_executable(unit_tests_exe ${TEST_SOURCES})

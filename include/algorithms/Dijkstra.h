@@ -18,9 +18,10 @@ struct DijkstraResult {
     bool                found;          // false when no path exists
 
     DijkstraResult()
-        : distance((std::numeric_limits<double>::max)()),
+        : distance(0.0),
           nodeExpansions(0),
           found(false) {}
+    // NOTE: distance is only meaningful when found == true.
 };
 
 // ─── Dijkstra class ───────────────────────────────────────────────────────────
@@ -28,7 +29,7 @@ struct DijkstraResult {
 class Dijkstra {
 public:
     /// Find the shortest path from @p start to @p end in @p graph.
-    static DijkstraResult findShortest(Graph& graph, int64_t start, int64_t end);
+    [[nodiscard]] static DijkstraResult findShortest(const Graph& graph, int64_t start, int64_t end);
 };
 
 #endif // DIJKSTRA_H

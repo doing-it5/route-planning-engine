@@ -70,6 +70,29 @@ void Graph::clear() {
     adjacencyList.clear();
 }
 
+void Graph::removeNode(int64_t id) {
+    if (!nodeExists(id)) return;
+    nodes.erase(id);
+    adjacencyList.erase(id);
+    // Remove all edges pointing TO this node from other nodes
+    for (auto& [nodeId, edges] : adjacencyList) {
+        edges.erase(
+            std::remove_if(edges.begin(), edges.end(),
+                           [id](const Edge& e) { return e.to == id; }),
+            edges.end());
+    }
+}
+
+void Graph::removeEdge(int64_t from, int64_t to) {
+    auto it = adjacencyList.find(from);
+    if (it == adjacencyList.end()) return;
+    auto& edges = it->second;
+    edges.erase(
+        std::remove_if(edges.begin(), edges.end(),
+                       [to](const Edge& e) { return e.to == to; }),
+        edges.end());
+}
+
 // ─── Geometry ─────────────────────────────────────────────────────────────────
 
 double Graph::haversineDistance(double lat1, double lon1,

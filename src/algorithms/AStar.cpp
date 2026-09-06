@@ -19,7 +19,7 @@ struct OpenNode {
 
 // ─── Implementation ───────────────────────────────────────────────────────────
 
-AStarResult AStar::findShortest(Graph& graph, int64_t start, int64_t end) {
+AStarResult AStar::findShortest(const Graph& graph, int64_t start, int64_t end) {
     AStarResult result;
 
     if (!graph.nodeExists(start) || !graph.nodeExists(end)) {

@@ -54,6 +54,12 @@ public:
 
     void clear();
 
+    /// Remove a node and all its incident edges. No-op if node does not exist.
+    void removeNode(int64_t id);
+
+    /// Remove all edges from @p from to @p to. No-op if no such edge exists.
+    void removeEdge(int64_t from, int64_t to);
+
     // ── Geometry helper ──────────────────────────────────────────────────────
     /// Returns great-circle distance in metres between two lat/lon points.
     static double haversineDistance(double lat1, double lon1,
