@@ -10,6 +10,8 @@ jobs:
   build-and-test:
     name: Build & Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -43,4 +45,9 @@ jobs:
 
     - name: Run Tests
       working-directory: build
-      run: ctest -C ${{ matrix.build_type }} --output-on-failure
+      run: |
+        if ("${{ matrix.os }}" -eq "windows-latest") {
+          .\tests\${{ matrix.build_type }}\run_tests.exe
+        } else {
+          ctest -C ${{ matrix.build_type }} --output-on-failure
+        }
