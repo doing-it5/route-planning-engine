@@ -18,5 +18,4 @@ if(MSVC)
     target_compile_options(run_tests PRIVATE /EHsc /W4)
 endif()
 
-include(GoogleTest)
-gtest_discover_tests(run_tests)
+add_test(NAME unit_tests COMMAND run_tests)

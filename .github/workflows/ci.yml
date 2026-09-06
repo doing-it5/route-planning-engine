@@ -27,7 +27,7 @@ jobs:
         -DBUILD_TESTING=ON
 
     - name: Build
-      run: cmake --build build --config ${{ matrix.build_type }}
+      run: cmake --build build --config ${{ matrix.build_type }} --verbose
 
     - name: Run Tests
       working-directory: build
