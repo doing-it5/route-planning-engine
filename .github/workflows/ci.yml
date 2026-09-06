@@ -27,7 +27,19 @@ jobs:
         -DBUILD_TESTING=ON
 
     - name: Build
-      run: cmake --build build --config ${{ matrix.build_type }} --verbose
+      run: cmake --build build --config ${{ matrix.build_type }} --verbose > build_log.txt 2>&1
+      continue-on-error: true
+
+    - name: Commit Log
+      if: matrix.os == 'windows-latest'
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        copy build_log.txt windows_build_log_${{ matrix.build_type }}.txt
+        git add windows_build_log_${{ matrix.build_type }}.txt
+        git commit -m "Upload build log ${{ matrix.build_type }}"
+        git pull --rebase
+        git push
 
     - name: Run Tests
       working-directory: build
