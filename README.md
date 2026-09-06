@@ -14,6 +14,7 @@ Held-Karp dynamic programming.
 ✅ **Pathfinding Algorithms**
 - **Dijkstra's Algorithm** — optimal shortest-path with min-heap priority queue
 - **A\* Search** — informed search using admissible Haversine heuristic; faster than Dijkstra on geographic graphs
+- **Bidirectional Dijkstra** — simultaneous forward/backward search meeting in the middle (~2× speedup)
 - **Held-Karp TSP Solver** — bitmask DP for exact multi-stop routing (up to 20 stops), O(n² · 2ⁿ)
 - **2-opt Local Search** — post-processing tour improvement, O(n²) per iteration
 
@@ -31,6 +32,9 @@ Held-Karp dynamic programming.
 
 # Point-to-point with A*
 ./route_planner --osm map.osm --from 123456 --to 789012 --algo astar
+
+# Point-to-point with Bidirectional Dijkstra
+./route_planner --osm map.osm --from 123456 --to 789012 --algo bidijkstra
 
 # Multi-stop TSP
 ./route_planner --osm map.osm --stops 111,222,333,444 --algo tsp
@@ -56,24 +60,26 @@ Held-Karp dynamic programming.
 route-planning-engine/
 ├── include/
 │   ├── graph/
-│   │   └── Graph.h              # Graph data structure + Haversine helper
+│   │   └── Graph.h                  # Graph data structure + Haversine helper
 │   ├── algorithms/
-│   │   ├── Dijkstra.h           # Dijkstra's algorithm
-│   │   ├── AStar.h              # A* with Haversine heuristic
-│   │   ├── HeldKarp.h           # TSP solver — Held-Karp bitmask DP
-│   │   └── TwoOpt.h             # 2-opt tour improvement
+│   │   ├── Dijkstra.h               # Dijkstra's algorithm
+│   │   ├── AStar.h                  # A* with Haversine heuristic
+│   │   ├── BidirectionalDijkstra.h  # Bidirectional Dijkstra search
+│   │   ├── HeldKarp.h               # TSP solver — Held-Karp bitmask DP
+│   │   └── TwoOpt.h                 # 2-opt tour improvement
 │   ├── parser/
-│   │   └── OSMParser.h          # OpenStreetMap XML parser
+│   │   └── OSMParser.h              # OpenStreetMap XML parser
 │   ├── benchmark/
-│   │   └── Benchmark.h          # Benchmarking framework
+│   │   └── Benchmark.h              # Benchmarking framework
 │   └── utils/
-│       └── Utils.h              # String helpers, formatters
+│       └── Utils.h                  # String helpers, formatters
 ├── src/
 │   ├── graph/
 │   │   └── Graph.cpp
 │   ├── algorithms/
 │   │   ├── Dijkstra.cpp
 │   │   ├── AStar.cpp
+│   │   ├── BidirectionalDijkstra.cpp
 │   │   ├── HeldKarp.cpp
 │   │   └── TwoOpt.cpp
 │   ├── parser/
@@ -82,18 +88,20 @@ route-planning-engine/
 │   │   └── Benchmark.cpp
 │   ├── utils/
 │   │   └── Utils.cpp
-│   └── main.cpp                 # CLI entry point
+│   └── main.cpp                     # CLI entry point
 ├── tests/
 │   ├── GraphTest.cpp
 │   ├── DijkstraTest.cpp
 │   ├── AStarTest.cpp
+│   ├── BidirectionalDijkstraTest.cpp
 │   ├── HeldKarpTest.cpp
 │   ├── TwoOptTest.cpp
-│   ├── IntegrationTest.cpp
-│   └── RealWorldDataTest.cpp
-├── examples/
-│   └── sample.osm               # Minimal OSM XML for quick testing
-├── CMakeLists.txt               # Build configuration (CMake 3.14+)
+│   ├── OSMParserTest.cpp
+│   ├── BenchmarkTest.cpp
+│   └── EdgeCaseTest.cpp
+├── data/
+│   └── sample_map.osm               # Minimal OSM XML for quick testing
+├── CMakeLists.txt                   # Build configuration (CMake 3.14+)
 ├── README.md
 └── .gitignore
 ```
@@ -106,6 +114,7 @@ route-planning-engine/
 |---|---|---|---|
 | Dijkstra | O((V + E) log V) | O(V) | Single-source shortest path |
 | A\* | O((V + E) log V) | O(V) | Single-pair (faster than Dijkstra on geo graphs) |
+| Bidirectional Dijkstra | O((V + E) log V) | O(V) | Fast point-to-point routing (~2× fewer expansions) |
 | Held-Karp | O(n² · 2ⁿ) | O(n · 2ⁿ) | Exact TSP, n ≤ 20 |
 | 2-opt | O(n²) / iteration | O(n) | Local tour improvement |
 
@@ -196,8 +205,8 @@ curl "https://overpass-api.de/api/map?bbox=-74.02,40.70,-73.97,40.73" -o lower_m
 cd build
 ctest --output-on-failure
 
-# Or run individual test binaries
-./tests/route_tests
+# Or run the test binary directly
+./tests/unit_tests_exe
 ```
 
 ---

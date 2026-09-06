@@ -57,6 +57,10 @@ BiDijkstraResult BidirectionalDijkstra::findShortest(const Graph& graph,
 
     // ── Alternate forward / backward steps until queues exhausted ─────────────
     while (!pqF.empty() || !pqB.empty()) {
+        // Early stop if the minimum potential path length exceeds best known
+        if (!pqF.empty() && !pqB.empty() && (pqF.top().dist + pqB.top().dist >= best)) {
+            break;
+        }
 
         // Forward step
         if (!pqF.empty()) {

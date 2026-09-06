@@ -25,6 +25,7 @@
 #include "graph/Graph.h"
 #include "algorithms/Dijkstra.h"
 #include "algorithms/AStar.h"
+#include "algorithms/BidirectionalDijkstra.h"
 #include "algorithms/HeldKarp.h"
 #include "algorithms/TwoOpt.h"
 #include "parser/OSMParser.h"
@@ -38,14 +39,14 @@ struct Args {
     int64_t     fromNode = -1;
     int64_t     toNode   = -1;
     std::vector<int64_t> stops;
-    std::string algo     = "dijkstra";  // dijkstra | astar | tsp
+    std::string algo     = "dijkstra";  // dijkstra | astar | bidijkstra | tsp
     bool        bench    = false;
     bool        demo     = false;
 };
 
 static void printHelp(const char* prog) {
     std::cout << "Usage:\n"
-              << "  " << prog << " --osm <file.osm> --from <id> --to <id> [--algo dijkstra|astar]\n"
+              << "  " << prog << " --osm <file.osm> --from <id> --to <id> [--algo dijkstra|astar|bidijkstra]\n"
               << "  " << prog << " --osm <file.osm> --stops <id1,id2,...> [--algo tsp]\n"
               << "  " << prog << " --demo\n"
               << "\nOptions:\n"
@@ -53,7 +54,7 @@ static void printHelp(const char* prog) {
               << "  --from  <id>    Source node ID\n"
               << "  --to    <id>    Destination node ID\n"
               << "  --stops <ids>   Comma-separated stop IDs for TSP\n"
-              << "  --algo  <name>  dijkstra (default) | astar | tsp\n"
+              << "  --algo  <name>  dijkstra (default) | astar | bidijkstra | tsp\n"
               << "  --bench         Run benchmarks after solving\n"
               << "  --demo          Run built-in synthetic demo\n";
 }
@@ -120,8 +121,14 @@ static void runDemo() {
     std::cout << "--- Dijkstra: node 1 → node 5 ---\n";
     DijkstraResult dres = Dijkstra::findShortest(graph, 1, 5);
     if (dres.found) {
-        std::cout << "  Distance  : " << utils::formatDistance(dres.distance) << "\n";
-        std::cout << "  Duration  : " << utils::formatDuration(dres.distance / (50.0/3.6)) << "\n";
+        double distM = 0.0;
+        for (size_t i = 0; i + 1 < dres.path.size(); ++i) {
+            for (const auto& e : graph.getNeighbors(dres.path[i])) {
+                if (e.to == dres.path[i + 1]) { distM += e.distance; break; }
+            }
+        }
+        std::cout << "  Distance  : " << utils::formatDistance(distM) << "\n";
+        std::cout << "  Duration  : " << utils::formatDuration(dres.distance) << "\n";
         std::cout << "  Path      : ";
         for (int64_t id : dres.path) std::cout << id << " ";
         std::cout << "\n  Expansions: " << dres.nodeExpansions << "\n\n";
@@ -133,10 +140,36 @@ static void runDemo() {
     std::cout << "--- A*: node 1 → node 5 ---\n";
     AStarResult ares = AStar::findShortest(graph, 1, 5);
     if (ares.found) {
-        std::cout << "  Distance  : " << utils::formatDistance(ares.distance) << "\n";
+        double distM = 0.0;
+        for (size_t i = 0; i + 1 < ares.path.size(); ++i) {
+            for (const auto& e : graph.getNeighbors(ares.path[i])) {
+                if (e.to == ares.path[i + 1]) { distM += e.distance; break; }
+            }
+        }
+        std::cout << "  Distance  : " << utils::formatDistance(distM) << "\n";
+        std::cout << "  Duration  : " << utils::formatDuration(ares.distance) << "\n";
         std::cout << "  Path      : ";
         for (int64_t id : ares.path) std::cout << id << " ";
         std::cout << "\n  Expansions: " << ares.nodeExpansions << "\n\n";
+    } else {
+        std::cout << "  No path found.\n\n";
+    }
+
+    // ── Bidirectional Dijkstra ───────────────────────────────────────────
+    std::cout << "--- Bidirectional Dijkstra: node 1 → node 5 ---\n";
+    BiDijkstraResult bres = BidirectionalDijkstra::findShortest(graph, 1, 5);
+    if (bres.found) {
+        double distM = 0.0;
+        for (size_t i = 0; i + 1 < bres.path.size(); ++i) {
+            for (const auto& e : graph.getNeighbors(bres.path[i])) {
+                if (e.to == bres.path[i + 1]) { distM += e.distance; break; }
+            }
+        }
+        std::cout << "  Distance  : " << utils::formatDistance(distM) << "\n";
+        std::cout << "  Duration  : " << utils::formatDuration(bres.distance) << "\n";
+        std::cout << "  Path      : ";
+        for (int64_t id : bres.path) std::cout << id << " ";
+        std::cout << "\n  Expansions: " << bres.nodeExpansions << "\n\n";
     } else {
         std::cout << "  No path found.\n\n";
     }
@@ -145,7 +178,7 @@ static void runDemo() {
     std::cout << "--- TSP (Held-Karp) over stops {1, 2, 3, 4} ---\n";
     HeldKarpResult hres = HeldKarp::solve(graph, {1, 2, 3, 4});
     if (hres.found) {
-        std::cout << "  Total dist: " << utils::formatDuration(hres.totalDistance) << "\n";
+        std::cout << "  Total time: " << utils::formatDuration(hres.totalDistance) << "\n";
         std::cout << "  Tour      : ";
         for (int64_t id : hres.tour) std::cout << id << " ";
         std::cout << "\n\n";
@@ -156,8 +189,9 @@ static void runDemo() {
     // ── Benchmark ─────────────────────────────────────────────────────────
     std::cout << "--- Benchmarks (100 iterations each) ---\n";
     std::vector<BenchmarkResult> brs;
-    brs.push_back(Benchmark::run("Dijkstra 1→5", [&]{ Dijkstra::findShortest(graph, 1, 5); }, 100));
-    brs.push_back(Benchmark::run("A* 1→5",       [&]{ AStar::findShortest(graph, 1, 5);    }, 100));
+    brs.push_back(Benchmark::run("Dijkstra 1→5",     [&]{ Dijkstra::findShortest(graph, 1, 5);              }, 100));
+    brs.push_back(Benchmark::run("A* 1→5",           [&]{ AStar::findShortest(graph, 1, 5);                 }, 100));
+    brs.push_back(Benchmark::run("BiDijkstra 1→5",   [&]{ BidirectionalDijkstra::findShortest(graph, 1, 5); }, 100));
     Benchmark::printResults(brs);
 }
 
@@ -221,10 +255,16 @@ static void runOSMRouting(const Args& args) {
         std::exit(1);
     }
 
-    auto printPath = [](const std::vector<int64_t>& path, double travelSecs, double distM) {
+    auto printPath = [&](const std::vector<int64_t>& path, double travelSecs) {
+        double distM = 0.0;
+        for (size_t i = 0; i + 1 < path.size(); ++i) {
+            for (const auto& e : graph.getNeighbors(path[i])) {
+                if (e.to == path[i + 1]) { distM += e.distance; break; }
+            }
+        }
         std::cout << "  Distance   : " << utils::formatDistance(distM)         << "\n";
         std::cout << "  Est. time  : " << utils::formatDuration(travelSecs)    << "\n";
-        std::cout << "  Hops       : " << path.size() - 1                      << "\n";
+        std::cout << "  Hops       : " << (path.empty() ? 0 : path.size() - 1) << "\n";
         std::cout << "  Path       : ";
         for (int64_t id : path) std::cout << id << " ";
         std::cout << "\n";
@@ -235,7 +275,18 @@ static void runOSMRouting(const Args& args) {
         auto bench = Benchmark::run("A*", [&]{ AStar::findShortest(graph, args.fromNode, args.toNode); });
         AStarResult res = AStar::findShortest(graph, args.fromNode, args.toNode);
         if (res.found) {
-            printPath(res.path, res.distance, res.distance);
+            printPath(res.path, res.distance);
+            std::cout << "  Expansions : " << res.nodeExpansions << "\n";
+        } else {
+            std::cout << "  No path found.\n";
+        }
+        if (args.bench) Benchmark::printResults({bench});
+    } else if (args.algo == "bidijkstra") {
+        std::cout << "--- Bidirectional Dijkstra: " << args.fromNode << " → " << args.toNode << " ---\n";
+        auto bench = Benchmark::run("BiDijkstra", [&]{ BidirectionalDijkstra::findShortest(graph, args.fromNode, args.toNode); });
+        BiDijkstraResult res = BidirectionalDijkstra::findShortest(graph, args.fromNode, args.toNode);
+        if (res.found) {
+            printPath(res.path, res.distance);
             std::cout << "  Expansions : " << res.nodeExpansions << "\n";
         } else {
             std::cout << "  No path found.\n";
@@ -247,7 +298,7 @@ static void runOSMRouting(const Args& args) {
         auto bench = Benchmark::run("Dijkstra", [&]{ Dijkstra::findShortest(graph, args.fromNode, args.toNode); });
         DijkstraResult res = Dijkstra::findShortest(graph, args.fromNode, args.toNode);
         if (res.found) {
-            printPath(res.path, res.distance, res.distance);
+            printPath(res.path, res.distance);
             std::cout << "  Expansions : " << res.nodeExpansions << "\n";
         } else {
             std::cout << "  No path found.\n";

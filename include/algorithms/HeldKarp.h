@@ -30,12 +30,12 @@ public:
     /// Solve the TSP for @p stops in @p graph.
     /// @p stops must contain at least 2 nodes that all exist in the graph.
     /// The tour begins and ends at stops[0].
-    [[nodiscard]] static HeldKarpResult solve(Graph& graph, const std::vector<int64_t>& stops);
+    [[nodiscard]] static HeldKarpResult solve(const Graph& graph, const std::vector<int64_t>& stops);
 
 private:
     /// Build a distance matrix by running Dijkstra between every pair of stops.
     static std::vector<std::vector<double>>
-    buildDistanceMatrix(Graph& graph, const std::vector<int64_t>& stops);
+    buildDistanceMatrix(const Graph& graph, const std::vector<int64_t>& stops);
 };
 
 #endif // HELDKARP_H

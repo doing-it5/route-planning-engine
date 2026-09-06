@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <stdexcept>
+#include <algorithm>
 
 static constexpr double PI = 3.14159265358979323846;
 static constexpr double EARTH_RADIUS_M = 6371000.0;  // metres

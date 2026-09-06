@@ -7,7 +7,7 @@
 // ─── Distance matrix builder ──────────────────────────────────────────────────
 
 std::vector<std::vector<double>>
-HeldKarp::buildDistanceMatrix(Graph& graph, const std::vector<int64_t>& stops) {
+HeldKarp::buildDistanceMatrix(const Graph& graph, const std::vector<int64_t>& stops) {
     const int n = static_cast<int>(stops.size());
     const double INF = (std::numeric_limits<double>::max)();
     std::vector<std::vector<double>> dist(n, std::vector<double>(n, INF));
@@ -27,7 +27,7 @@ HeldKarp::buildDistanceMatrix(Graph& graph, const std::vector<int64_t>& stops) {
 
 // ─── Held-Karp DP ─────────────────────────────────────────────────────────────
 
-HeldKarpResult HeldKarp::solve(Graph& graph, const std::vector<int64_t>& stops) {
+HeldKarpResult HeldKarp::solve(const Graph& graph, const std::vector<int64_t>& stops) {
     HeldKarpResult result;
 
     const int n = static_cast<int>(stops.size());

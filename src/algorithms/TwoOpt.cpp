@@ -14,10 +14,12 @@ TwoOptResult TwoOpt::improve(const std::vector<int64_t>& tour,
         TwoOptResult r;
         r.tour = tour;
         double total = 0.0;
-        for (int i = 0; i + 1 < n; ++i) {
-            if (i < static_cast<int>(costMatrix.size()) &&
-                (i + 1) < static_cast<int>(costMatrix[i].size())) {
-                total += costMatrix[i][i + 1];
+        if (n > 1) {
+            for (int i = 0; i < n; ++i) {
+                if (i < static_cast<int>(costMatrix.size()) &&
+                    ((i + 1) % n) < static_cast<int>(costMatrix[i].size())) {
+                    total += costMatrix[i][(i + 1) % n];
+                }
             }
         }
         r.totalDistance = total;

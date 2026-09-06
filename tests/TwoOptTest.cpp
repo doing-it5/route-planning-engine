@@ -15,6 +15,8 @@ TEST_F(TwoOptTest, SmallTourHandlesUnderFourStops) {
     auto result = TwoOpt::improve(tour, matrix);
     EXPECT_EQ(result.tour, tour);
     EXPECT_EQ(result.iterations, 0);
+    // Perimeter cycle: (0->1: 5) + (1->2: 8) + (2->0: 10) = 23.0
+    EXPECT_DOUBLE_EQ(result.totalDistance, 23.0);
 }
 
 TEST_F(TwoOptTest, UncrossesCrossingEdges) {
