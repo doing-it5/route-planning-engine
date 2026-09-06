@@ -36,8 +36,8 @@ DijkstraResult Dijkstra::findShortest(const Graph& graph, int64_t start, int64_t
     std::unordered_map<int64_t, double>  dist;
     std::unordered_map<int64_t, int64_t> prev;
 
-    for (const auto& [id, _] : graph.getAllNodes()) {
-        dist[id] = INF;
+    for (const auto& kv : graph.getAllNodes()) {
+        dist[kv.first] = INF;
     }
     dist[start] = 0.0;
 

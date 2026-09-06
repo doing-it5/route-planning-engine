@@ -49,8 +49,8 @@ AStarResult AStar::findShortest(const Graph& graph, int64_t start, int64_t end) 
     std::unordered_map<int64_t, double>  g;   // known cost from start
     std::unordered_map<int64_t, int64_t> prev;
 
-    for (const auto& [id, _] : graph.getAllNodes()) {
-        g[id] = INF;
+    for (const auto& kv : graph.getAllNodes()) {
+        g[kv.first] = INF;
     }
     g[start] = 0.0;
 

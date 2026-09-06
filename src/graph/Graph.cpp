@@ -59,8 +59,8 @@ const std::vector<Edge>& Graph::getNeighbors(int64_t nodeId) const {
 
 size_t Graph::edgeCount() const {
     size_t total = 0;
-    for (const auto& [id, edges] : adjacencyList) {
-        total += edges.size();
+    for (const auto& kv : adjacencyList) {
+        total += kv.second.size();
     }
     return total;
 }
@@ -75,7 +75,8 @@ void Graph::removeNode(int64_t id) {
     nodes.erase(id);
     adjacencyList.erase(id);
     // Remove all edges pointing TO this node from other nodes
-    for (auto& [nodeId, edges] : adjacencyList) {
+    for (auto& kv : adjacencyList) {
+        auto& edges = kv.second;
         edges.erase(
             std::remove_if(edges.begin(), edges.end(),
                            [id](const Edge& e) { return e.to == id; }),

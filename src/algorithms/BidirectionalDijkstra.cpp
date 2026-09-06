@@ -41,9 +41,9 @@ BiDijkstraResult BidirectionalDijkstra::findShortest(const Graph& graph,
     std::unordered_map<int64_t, int64_t> prevF, prevB;
     std::unordered_map<int64_t, bool>    settledF, settledB;
 
-    for (const auto& [id, node] : graph.getAllNodes()) {
-        distF[id] = INF;
-        distB[id] = INF;
+    for (const auto& kv : graph.getAllNodes()) {
+        distF[kv.first] = INF;
+        distB[kv.first] = INF;
     }
     distF[start] = 0.0;
     distB[end]   = 0.0;
