@@ -60,11 +60,12 @@ BiDijkstraResult BidirectionalDijkstra::findShortest(const Graph& graph,
 
         // Forward step
         if (!pqF.empty()) {
-            auto [u, d] = pqF.top(); pqF.pop();
+            const PQNode topF = pqF.top(); pqF.pop();
+            const int64_t u = topF.id;
+            const double  d = topF.dist;
             ++result.nodeExpansions;
 
-            if (d > distF[u]) { /* stale */ }
-            else {
+            if (d <= distF[u]) {
                 settledF[u] = true;
 
                 if (settledB.count(u) && distF[u] + distB[u] < best) {
@@ -92,11 +93,12 @@ BiDijkstraResult BidirectionalDijkstra::findShortest(const Graph& graph,
 
         // Backward step
         if (!pqB.empty()) {
-            auto [u, d] = pqB.top(); pqB.pop();
+            const PQNode topB = pqB.top(); pqB.pop();
+            const int64_t u = topB.id;
+            const double  d = topB.dist;
             ++result.nodeExpansions;
 
-            if (d > distB[u]) { /* stale */ }
-            else {
+            if (d <= distB[u]) {
                 settledB[u] = true;
 
                 if (settledF.count(u) && distF[u] + distB[u] < best) {
