@@ -111,16 +111,17 @@ BiDijkstraResult BidirectionalDijkstra::findShortest(const Graph& graph,
                 }
 
                 if (distB[u] < best) {
-                    for (const Edge& edge : graph.getNeighbors(u)) {
+                    for (const Edge& edge : graph.getIncomingEdges(u)) {
+                        // edge goes from edge.from to u
                         const double newDist = distB[u] + edge.weight;
-                        if (newDist < distB[edge.to]) {
-                            distB[edge.to] = newDist;
-                            prevB[edge.to] = u;
-                            pqB.push({edge.to, newDist});
-                            if (settledF.count(edge.to) &&
-                                distF[edge.to] + newDist < best) {
-                                best    = distF[edge.to] + newDist;
-                                midNode = edge.to;
+                        if (newDist < distB[edge.from]) {
+                            distB[edge.from] = newDist;
+                            prevB[edge.from] = u; // from the perspective of traversing backwards
+                            pqB.push({edge.from, newDist});
+                            if (settledF.count(edge.from) &&
+                                distF[edge.from] + newDist < best) {
+                                best    = distF[edge.from] + newDist;
+                                midNode = edge.from;
                             }
                         }
                     }

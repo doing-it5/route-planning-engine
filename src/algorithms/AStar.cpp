@@ -33,15 +33,21 @@ AStarResult AStar::findShortest(const Graph& graph, int64_t start, int64_t end) 
         return result;
     }
 
-    // Goal node coordinates for the heuristic
+    // goal node coordinates for the heuristic
     const Node* goalNode = graph.getNode(end);
 
-    // ── Heuristic: Haversine straight-line distance ───────────────────────
+    // ── Heuristic: Haversine straight-line travel time ────────────────────────
+    // Edge weights represent travel time in seconds. Haversine distance is in metres.
+    // To maintain admissibility (h(n) <= true cost), divide the distance by the
+    // absolute maximum possible theoretical speed. Assume max 130 km/h = 36.111 m/s.
+    const double MAX_SPEED_MPS = 130.0 / 3.6;
+
     auto heuristic = [&](int64_t id) -> double {
         const Node* n = graph.getNode(id);
         if (!n) return 0.0;
-        return Graph::haversineDistance(n->latitude, n->longitude,
-                                        goalNode->latitude, goalNode->longitude);
+        double dist = Graph::haversineDistance(n->latitude, n->longitude,
+                                               goalNode->latitude, goalNode->longitude);
+        return dist / MAX_SPEED_MPS;
     };
 
     // ── Initialise ────────────────────────────────────────────────────────

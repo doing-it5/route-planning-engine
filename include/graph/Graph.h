@@ -49,6 +49,8 @@ public:
     const std::unordered_map<int64_t, Node>&              getAllNodes()        const { return nodes; }
     const std::unordered_map<int64_t, std::vector<Edge>>& getAdjacencyList()  const { return adjacencyList; }
 
+    const std::vector<Edge>& getIncomingEdges(int64_t nodeId) const;
+
     size_t nodeCount() const { return nodes.size(); }
     size_t edgeCount() const;
 
@@ -68,6 +70,7 @@ public:
 private:
     std::unordered_map<int64_t, Node>              nodes;
     std::unordered_map<int64_t, std::vector<Edge>> adjacencyList;
+    std::unordered_map<int64_t, std::vector<Edge>> incomingAdjacencyList;
 };
 
 #endif // GRAPH_H
