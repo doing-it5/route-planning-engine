@@ -14,5 +14,9 @@ target_link_libraries(run_tests PRIVATE
     GTest::gtest_main
 )
 
+if(MSVC)
+    target_compile_options(run_tests PRIVATE /EHsc /W4)
+endif()
+
 include(GoogleTest)
 gtest_discover_tests(run_tests)

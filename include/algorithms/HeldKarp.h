@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <limits>
+#include <cstdint>
 
 // ─── Result ───────────────────────────────────────────────────────────────────
 

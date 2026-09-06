@@ -9,12 +9,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Compiler warnings
-if(MSVC)
-    add_compile_options(/W4 /permissive-)
-else()
-    add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
+# Prevent Windows.h from defining min/max macros
+add_compile_definitions(NOMINMAX)
 
 # Core Library Sources
 set(LIB_SOURCES
@@ -35,9 +31,21 @@ target_include_directories(route_planning_lib PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
+if(MSVC)
+    target_compile_options(route_planning_lib PRIVATE /EHsc /W4)
+else()
+    target_compile_options(route_planning_lib PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
 # CLI Executable Target
 add_executable(route_planner src/main.cpp)
 target_link_libraries(route_planner PRIVATE route_planning_lib)
+
+if(MSVC)
+    target_compile_options(route_planner PRIVATE /EHsc /W4)
+else()
+    target_compile_options(route_planner PRIVATE -Wall -Wextra -Wpedantic)
+endif()
 
 # Testing Support
 option(BUILD_TESTING "Build unit tests" ON)

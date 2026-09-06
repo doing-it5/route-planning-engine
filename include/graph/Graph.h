@@ -6,6 +6,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <string>
+#include <cstdint>
 
 // ─── Data Structures ────────────────────────────────────────────────────────
 
