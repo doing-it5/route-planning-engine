@@ -212,10 +212,12 @@ OSMParser::ParseResult OSMParser::parseStream(std::istream& stream, Graph& graph
 
         // ── <way …> ────────────────────────────────────────────────────
         if (!inWay && trimmed.find("<way") == 0) {
-            inWay       = true;
             currentWay  = OSMWay{};
             const std::string id_s = getAttribute(trimmed, "id");
             try { currentWay.id = std::stoll(id_s); } catch (...) {}
+            if (trimmed.find("/>") == std::string::npos) {
+                inWay = true;
+            }
             continue;
         }
 

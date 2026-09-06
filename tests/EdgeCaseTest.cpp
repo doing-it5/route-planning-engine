@@ -98,3 +98,22 @@ TEST(AStarEdgeCases, NonExistentEndNode) {
     auto res = AStar::findShortest(g, 1, 999);
     EXPECT_FALSE(res.found);
 }
+
+TEST(OSMParserEdgeCases, SelfClosingWayAndEmptyXML) {
+    Graph g;
+    const std::string xml = R"(<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6">
+  <node id="1" lat="40.0" lon="-74.0"/>
+  <node id="2" lat="40.1" lon="-74.0"/>
+  <way id="99" />
+  <way id="100">
+    <nd ref="1"/>
+    <nd ref="2"/>
+    <tag k="highway" v="primary"/>
+  </way>
+</osm>)";
+    auto res = OSMParser::parseOSMXMLFromString(xml, g);
+    EXPECT_TRUE(res.success);
+    EXPECT_EQ(g.nodeCount(), static_cast<size_t>(2));
+    EXPECT_EQ(g.edgeCount(), static_cast<size_t>(2));
+}
