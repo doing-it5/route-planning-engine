@@ -8,14 +8,14 @@ set(TEST_SOURCES
     BenchmarkTest.cpp
 )
 
-add_executable(run_tests ${TEST_SOURCES})
-target_link_libraries(run_tests PRIVATE
+add_executable(unit_tests_exe ${TEST_SOURCES})
+target_link_libraries(unit_tests_exe PRIVATE
     route_planning_lib
     GTest::gtest_main
 )
 
 if(MSVC)
-    target_compile_options(run_tests PRIVATE /EHsc /W4)
+    target_compile_options(unit_tests_exe PRIVATE /EHsc /W4)
 endif()
 
-add_test(NAME unit_tests COMMAND $<TARGET_FILE:run_tests>)
+add_test(NAME unit_tests COMMAND $<TARGET_FILE:unit_tests_exe>)
