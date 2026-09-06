@@ -9,8 +9,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Prevent Windows.h from defining min/max macros
-add_compile_definitions(NOMINMAX)
+# Prevent Windows.h from defining min/max macros and enable math constants
+add_compile_definitions(NOMINMAX _USE_MATH_DEFINES)
 
 # Core Library Sources
 set(LIB_SOURCES

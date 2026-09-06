@@ -3,8 +3,8 @@
 #include <cmath>
 #include <stdexcept>
 
-// ─── Constants ───────────────────────────────────────────────────────────────
-static constexpr double EARTH_RADIUS_M = 6'371'000.0;  // metres
+static constexpr double PI = 3.14159265358979323846;
+static constexpr double EARTH_RADIUS_M = 6371000.0;  // metres
 
 // ─── Node operations ─────────────────────────────────────────────────────────
 
@@ -74,7 +74,7 @@ void Graph::clear() {
 
 double Graph::haversineDistance(double lat1, double lon1,
                                 double lat2, double lon2) {
-    auto toRad = [](double deg) { return deg * M_PI / 180.0; };
+    auto toRad = [](double deg) { return deg * PI / 180.0; };
 
     const double dlat = toRad(lat2 - lat1);
     const double dlon = toRad(lon2 - lon1);
