@@ -4,19 +4,6 @@
 #include <stdexcept>
 #include <limits>
 
-// ─── Helper: compute total tour distance ─────────────────────────────────────
-
-static double tourCost(const std::vector<int64_t>& tour,
-                       const std::vector<std::vector<double>>& cost,
-                       const std::vector<int>& idx) {
-    double total = 0.0;
-    const int n = static_cast<int>(idx.size());
-    for (int i = 0; i < n; ++i) {
-        total += cost[idx[i]][idx[(i + 1) % n]];
-    }
-    return total;
-}
-
 // ─── 2-opt implementation ─────────────────────────────────────────────────────
 
 TwoOptResult TwoOpt::improve(const std::vector<int64_t>& tour,
