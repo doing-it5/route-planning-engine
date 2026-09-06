@@ -18,4 +18,4 @@ if(MSVC)
     target_compile_options(run_tests PRIVATE /EHsc /W4)
 endif()
 
-add_test(NAME unit_tests COMMAND run_tests)
+add_test(NAME unit_tests COMMAND $<TARGET_FILE:run_tests>)
